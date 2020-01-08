@@ -1,7 +1,6 @@
 package util
 
 import (
-	"os"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -32,12 +31,10 @@ func GetOutputs() (res []Output, err error) {
 
 func SwitchOutputs(from, to string) error {
 	off := exec.Command("xrandr", "--output", from, "--off")
-	off.Stdout = os.Stdout
 	if err := off.Run(); err != nil {
 		return err
 	}
 	connect := exec.Command("xrandr", "--output", to, "--auto", "--primary")
-	connect.Stdout = os.Stdout
 	if err := connect.Run(); err != nil {
 		return err
 	}

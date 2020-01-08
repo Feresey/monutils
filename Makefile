@@ -1,11 +1,14 @@
 all: bin
-	go build -o bin -v ./cmd/...
+	go build -v -o ./bin ./cmd/...
 
 bin:
 	mkdir bin
 
+clean:
+	rm -v ./bin/*
+
 install:
 	go install -v ./cmd/...
 
-clean:
-	rm ./bin/*
+test:
+	go test -v -cover ./...
